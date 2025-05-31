@@ -1,0 +1,25 @@
+{
+  "name": "dummy-dashboard-backend",
+  "version": "1.0.0",
+  "description": "Backend services for my dummy dashboard portfolio",
+  "main": "server.js",
+  "scripts": {
+    "dev": "nodemon server.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/gerypratama/dummy-dashboard-backend.git"
+  },
+  "author": "gerypratama",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/gerypratama/dummy-dashboard-backend/issues"
+  },
+  "homepage": "https://github.com/gerypratama/dummy-dashboard-backend#readme",
+  "dependencies": {
+    "express": "^5.1.0"
+  },
+  "devDependencies": {
+    "nodemon": "^3.1.10"
+  }
+}
