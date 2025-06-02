@@ -9,7 +9,7 @@ const logEvents = async (msg, fileName) => {
   const logItem = `${dateTime}\t${uuid()}\t${msg}\n`
 
   try {
-    const logDir = path.join(__dirname, '..', 'logs')
+    const logDir = path.join(__dirname, '..', '..', 'logs')
     if (!fs.existsSync(logDir)) {
       await fsPromises.mkdir(logDir)
     }

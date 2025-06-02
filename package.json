@@ -2,9 +2,9 @@
   "name": "dummy-dashboard-backend",
   "version": "1.0.0",
   "description": "Backend services for my dummy dashboard portfolio",
-  "main": "server.js",
+  "main": "index.js",
   "scripts": {
-    "dev": "nodemon server.js"
+    "dev": "nodemon src"
   },
   "repository": {
     "type": "git",
