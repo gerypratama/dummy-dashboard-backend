@@ -1,0 +1,9 @@
+require('dotenv').config()
+
+const NEO4J_URI = process.env.NEO4J_URI
+const NEO4J_USERNAME = process.env.NEO4J_USERNAME
+const NEO4J_PASSWORD = process.env.NEO4J_PASSWORD
+const ACCESS_TOKEN_SECRET = process.env.ACCESS_TOKEN_SECRET
+const REFRESH_TOKEN_SECRET = process.env.REFRESH_TOKEN_SECRET
+
+module.exports = { NEO4J_URI, NEO4J_USERNAME, NEO4J_PASSWORD, ACCESS_TOKEN_SECRET, REFRESH_TOKEN_SECRET }
