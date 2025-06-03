@@ -11,6 +11,7 @@ const PORT = process.env.PORT || 3500
 app.use(logger)
 app.use(credentials)
 app.use(cors(corsOptions))
+app.use(express.urlencoded({ extended: false }))
 app.use(express.json())
 app.use(cookieParser())
 app.use('/', require('./routes/root'))
