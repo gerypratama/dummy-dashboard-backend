@@ -15,7 +15,7 @@ app.use(express.urlencoded({ extended: false }))
 app.use(express.json())
 app.use(cookieParser())
 app.use('/', require('./routes/root'))
-app.use('/api/auth', require('./routes/api/auth'))
+app.use('/api', require('./routes/api'))
 app.use((req, res) => {
   res.status(404);
   res.json({ error: '404 Not Found' })
