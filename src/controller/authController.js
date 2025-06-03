@@ -118,4 +118,66 @@ const handleRegister = async (req, res) => {
   }
 }
 
-module.exports = { handleLogin, handleRegister }
+const handleRefreshToken = async (req, res) => {
+  const cookies = req.cookies
+  if (!cookies) return res.sendStatus(401)
+
+  const refreshToken = cookies.jwt
+
+  jwt.verify(
+    refreshToken,
+    REFRESH_TOKEN_SECRET,
+    async (err, decoded) => {
+      if (err) return res.sendStatus(401)
+
+      const session = driver.session()
+      const response = await session.executeRead(tx => tx.run(
+        `
+        MATCH (u: User {username: $username})
+        RETURN u
+        `,
+        { username: decoded.username }
+      ))
+
+      await session.close()
+
+      if (response.records.length === 0) {
+        return res.sendStatus(401)
+      }
+
+      const user = response.records[0].get('u')
+      const {
+        firstName,
+        lastName,
+        image,
+        role,
+        companyPosition,
+        companyName,
+        phone,
+        email,
+        username
+      } = user.properties
+      const accessToken = jwt.sign(
+        {
+          "user_info": {
+            "username": username,
+            "email": email,
+            "role": role,
+            "first_name": firstName,
+            "last_name": lastName,
+            "profile_pict": image,
+            "phone": phone,
+            "company": companyName,
+            "job_title": companyPosition
+          }
+        },
+        ACCESS_TOKEN_SECRET,
+        { expiresIn: '30s' }
+      )
+
+      res.json({ accessToken })
+    }
+  )
+}
+
+module.exports = { handleLogin, handleRegister, handleRefreshToken }
